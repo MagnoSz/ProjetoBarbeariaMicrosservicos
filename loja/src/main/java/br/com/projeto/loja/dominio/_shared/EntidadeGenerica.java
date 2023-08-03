@@ -1,4 +1,4 @@
-package br.com.projeto.loja.infraestrutura.spring._shared;
+package br.com.projeto.loja.dominio._shared;
 
 import jakarta.persistence.*;
 import lombok.Getter;

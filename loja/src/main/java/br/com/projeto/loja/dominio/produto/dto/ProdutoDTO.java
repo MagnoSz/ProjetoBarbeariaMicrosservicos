@@ -1,8 +1,11 @@
-package br.com.projeto.loja.infraestrutura.spring.produto;
+package br.com.projeto.loja.dominio.produto.dto;
 
+import br.com.projeto.loja.dominio._shared.BaseDTO;
 import br.com.projeto.loja.dominio.produto.entidade.Produto;
-import br.com.projeto.loja.infraestrutura.spring._shared.BaseDTO;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
@@ -10,7 +13,7 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoDTO extends BaseDTO<ProdutoDTO, Produto> {
+public class ProdutoDTO implements BaseDTO<ProdutoDTO, Produto> {
 
     private Long id;
     private BigDecimal valor;

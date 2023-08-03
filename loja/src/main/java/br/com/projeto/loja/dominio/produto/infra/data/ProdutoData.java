@@ -1,4 +1,4 @@
-package br.com.projeto.loja.infraestrutura.spring.produto;
+package br.com.projeto.loja.dominio.produto.infra.data;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

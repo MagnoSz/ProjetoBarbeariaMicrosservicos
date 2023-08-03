@@ -1,15 +1,15 @@
-package br.com.projeto.loja.infraestrutura.spring.produto;
+package br.com.projeto.loja.dominio.produto;
 
+import br.com.projeto.loja.dominio._shared.BaseMapper;
 import br.com.projeto.loja.dominio.produto.entidade.Produto;
-import br.com.projeto.loja.infraestrutura.spring._shared.BaseMapper;
-import lombok.AllArgsConstructor;
+import br.com.projeto.loja.dominio.produto.infra.data.ProdutoData;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-@AllArgsConstructor
 @Component
-public class ProdutoMapper extends BaseMapper<ProdutoData, Produto> {
+@RequiredArgsConstructor
+public class ProdutoMapper implements BaseMapper<ProdutoData, Produto> {
 
-    @Override
     public Produto toDomain(ProdutoData produtoData) {
         return new Produto(
                 produtoData.getId(),
@@ -19,7 +19,6 @@ public class ProdutoMapper extends BaseMapper<ProdutoData, Produto> {
         );
     }
 
-    @Override
     public ProdutoData toData(Produto produto) {
         ProdutoData produtoData = new ProdutoData();
         produtoData.setId(produto.getId());
