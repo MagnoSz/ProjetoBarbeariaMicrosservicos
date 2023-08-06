@@ -2,11 +2,12 @@ package br.com.projeto.loja.dominio.produto.aplicacao;
 
 import br.com.projeto.loja.dominio._shared.BaseService;
 import br.com.projeto.loja.dominio.produto.entidade.Produto;
-import br.com.projeto.loja.dominio.produto.infra.data.ProdutoData;
-import lombok.RequiredArgsConstructor;
+import br.com.projeto.loja.dominio.produto.repository.ProdutoRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
-public class ProdutoService extends BaseService<ProdutoData, Produto> {
+public class ProdutoService extends BaseService<Produto> {
+    public ProdutoService(ProdutoRegras produtoRegras, ProdutoRepository produtoRepository){
+        super(produtoRegras, produtoRepository);
+    }
 }

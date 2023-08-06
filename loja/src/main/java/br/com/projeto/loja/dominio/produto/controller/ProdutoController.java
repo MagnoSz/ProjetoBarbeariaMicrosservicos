@@ -1,30 +1,24 @@
 package br.com.projeto.loja.dominio.produto.controller;
 
+import br.com.projeto.loja.dominio._shared.BaseController;
 import br.com.projeto.loja.dominio.produto.aplicacao.ProdutoService;
-import br.com.projeto.loja.dominio.produto.entidade.Produto;
 import br.com.projeto.loja.dominio.produto.dto.ProdutoDTO;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import br.com.projeto.loja.dominio.produto.entidade.Produto;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/produto")
-public class ProdutoController {
+public class ProdutoController extends BaseController<Produto> {
 
     private final ProdutoService service;
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Long incluir(@RequestBody ProdutoDTO dto) throws Exception {
-        return service.inserir(dto).getId();
-    }
-
-    @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Long editar(@RequestBody ProdutoDTO dto) throws Exception {
-        return service.editar(dto).getId();
+    public ProdutoController(ProdutoService service){
+        super(service);
+        this.service = service;
     }
 
     @Transactional(readOnly = true)
@@ -32,12 +26,6 @@ public class ProdutoController {
     public ProdutoDTO consultar(@PathVariable Long id) throws Exception {
         Produto produto = service.consultar(id);
         return new ProdutoDTO().from(produto);
-    }
-
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletar(@PathVariable Long id) {
-        service.deletar(id);
     }
 
 }

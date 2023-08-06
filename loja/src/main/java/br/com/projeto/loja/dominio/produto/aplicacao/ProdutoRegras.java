@@ -4,10 +4,12 @@ import br.com.projeto.loja.dominio._shared.Regras;
 import br.com.projeto.loja.dominio.produto.entidade.Produto;
 import br.com.projeto.loja.dominio.produto.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class ProdutoRegras implements Regras {
 
