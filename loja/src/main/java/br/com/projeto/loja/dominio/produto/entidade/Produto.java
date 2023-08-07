@@ -1,10 +1,15 @@
 package br.com.projeto.loja.dominio.produto.entidade;
 
+import br.com.projeto.loja.core.config.exceptions.RegraNegocioException;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
 @Builder
+@Getter
+@Setter
 public class Produto implements ProdutoInterface {
 
     private Long id;
@@ -17,11 +22,12 @@ public class Produto implements ProdutoInterface {
         this.valor = valor;
         this.descricao = descricao;
         this.quantidade = quantidade;
+        validar();
     }
 
-    public void validar() throws Exception {
-        if (valor.compareTo(BigDecimal.ZERO) <= 0) throw new Exception("Valor não deve ser menor ou igual a zero") ;
-        if (quantidade < 0) throw new Exception("Quantidade deve ser maior que zero");
+    public void validar() {
+        if (valor.compareTo(BigDecimal.ZERO) <= 0) throw new RegraNegocioException("Valor não deve ser menor ou igual a zero") ;
+        if (quantidade < 0) throw new RegraNegocioException("Quantidade deve ser maior que zero");
     }
 
     @Override

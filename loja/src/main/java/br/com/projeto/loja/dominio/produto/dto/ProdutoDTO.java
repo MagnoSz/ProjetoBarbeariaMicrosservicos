@@ -1,6 +1,5 @@
 package br.com.projeto.loja.dominio.produto.dto;
 
-import br.com.projeto.loja.dominio._shared.BaseDTO;
 import br.com.projeto.loja.dominio.produto.entidade.Produto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,18 +12,15 @@ import java.math.BigDecimal;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProdutoDTO implements BaseDTO<ProdutoDTO, Produto> {
+public class ProdutoDTO {
 
     private Long id;
     private BigDecimal valor;
     private String descricao;
     private Long quantidade;
 
-    @Override
-    public Produto toDomain() throws Exception {
-        Produto produto = new Produto(id, valor, descricao, quantidade);
-        produto.validar();
-        return produto;
+    public Produto toDomain() {
+        return new Produto(id, valor, descricao, quantidade);
     }
 
     public ProdutoDTO from(Produto produto) {
