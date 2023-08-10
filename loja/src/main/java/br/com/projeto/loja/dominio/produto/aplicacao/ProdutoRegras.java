@@ -6,9 +6,6 @@ import br.com.projeto.loja.dominio.produto.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Component
 @RequiredArgsConstructor
 public class ProdutoRegras implements Regras {
@@ -19,17 +16,19 @@ public class ProdutoRegras implements Regras {
         validarNomeJaUtilizado(produto);
     }
 
+    @Override
+    public void aplicarRegrasBeforeInsert(Object o) {
+        validarNomeJaUtilizado((Produto) o);
+    }
+
+    @Override
+    public void aplicarRegrasBeforeUpdate(Object o) {
+
+
+    }
+
     private void validarNomeJaUtilizado(Produto produto) {
         produtoRepository.validarNomeJaUtilizado(produto);
     }
 
-    @Override
-    public void aplicarRegrasBeforeInsert() {
-
-    }
-
-    @Override
-    public void aplicarRegrasBeforeUpdate() {
-
-    }
 }

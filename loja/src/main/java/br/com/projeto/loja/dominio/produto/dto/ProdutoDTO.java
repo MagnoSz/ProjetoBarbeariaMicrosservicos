@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -23,7 +26,11 @@ public class ProdutoDTO {
         return new Produto(id, valor, descricao, quantidade);
     }
 
-    public ProdutoDTO from(Produto produto) {
+    public List<Produto> toDomain(List<ProdutoDTO> produtosDTO) {
+        return produtosDTO != null ? produtosDTO.stream().map(ProdutoDTO::toDomain).collect(Collectors.toList()) : new ArrayList<>();
+    }
+
+    public static ProdutoDTO from(Produto produto) {
         if (produto == null) return null;
 
         ProdutoDTO produtoDTO = new ProdutoDTO();
@@ -33,6 +40,10 @@ public class ProdutoDTO {
         produtoDTO.setQuantidade(produto.getQuantidade());
 
         return produtoDTO;
+    }
+
+    public static List<ProdutoDTO> from(List<Produto> produtosDominio) {
+        return produtosDominio != null ? produtosDominio.stream().map(ProdutoDTO::from).collect(Collectors.toList()) : new ArrayList<>();
     }
 
 }

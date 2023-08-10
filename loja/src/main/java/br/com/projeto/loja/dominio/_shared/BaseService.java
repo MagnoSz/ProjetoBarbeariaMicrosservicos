@@ -12,13 +12,13 @@ public class BaseService<DOMINIO> {
 
     public DOMINIO inserir(BaseDTO dto) throws Exception {
         DOMINIO dominio = (DOMINIO) dto.toDomain();
-        regras.aplicarRegrasBeforeInsert();
+        regras.aplicarRegrasBeforeInsert(dominio);
         return repository.inserir(dominio).get();
     }
 
     public DOMINIO editar(BaseDTO dto) throws Exception {
         DOMINIO dominio = (DOMINIO) dto.toDomain();
-        regras.aplicarRegrasBeforeUpdate();
+        regras.aplicarRegrasBeforeUpdate(dominio);
         return repository.editar(dominio).get();
     }
 

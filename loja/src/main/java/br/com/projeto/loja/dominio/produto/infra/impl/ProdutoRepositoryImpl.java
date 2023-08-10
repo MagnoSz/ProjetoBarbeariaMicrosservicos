@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -23,7 +25,6 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
     @Override
     public Optional<Produto> inserir(Produto produto) {
         ProdutoData data = mapper.toData(produto);
-//        empresaSgmuRepository.ajustarEmpresaAntesIncluir(data);
         data = repository.save(data);
         return Optional.of(mapper.toDomain(data));
     }
@@ -31,7 +32,6 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
     @Override
     public Optional<Produto> editar(Produto produto) {
         ProdutoData data = mapper.toData(produto);
-//        empresaSgmuRepository.ajustarEmpresaAntesEditar(data);
         data = repository.save(data);
         return Optional.of(mapper.toDomain(data));
     }
@@ -45,6 +45,14 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
     public Optional<Produto> consultar(Long id) {
         ProdutoData data = repository.findById(id).orElseThrow(NaoEncontradoException::new);
         return Optional.of(mapper.toDomain(data));
+    }
+
+    @Override
+    public List<Produto> listar() {
+        List<ProdutoData> produtosData = repository.findAll();
+        List<Produto> produtosDominio = new ArrayList<>();
+        produtosData.forEach(produtoData -> produtosDominio.add(mapper.toDomain(produtoData)));
+        return produtosDominio;
     }
 
     @Override

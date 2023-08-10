@@ -4,8 +4,9 @@ import br.com.projeto.loja.dominio.produto.dto.ProdutoDTO;
 import br.com.projeto.loja.dominio.produto.entidade.Produto;
 import br.com.projeto.loja.dominio.produto.repository.ProdutoRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,27 +15,30 @@ public class ProdutoService {
     private final ProdutoRepository repository;
 
     public Produto inserir(ProdutoDTO dto) {
-        Produto defeito = dto.toDomain();
-        regras.execute(defeito);
-        return repository.inserir(defeito).get();
+        Produto produto = dto.toDomain();
+        regras.execute(produto);
+        regras.aplicarRegrasBeforeInsert(produto);
+        return repository.inserir(produto).get();
     }
 
     public Produto editar(ProdutoDTO dto) {
-        Produto defeito = dto.toDomain();
-        regras.execute(defeito);
-        return repository.editar(defeito).get();
+        Produto produto = dto.toDomain();
+        regras.execute(produto);
+        regras.aplicarRegrasBeforeUpdate(produto);
+        return repository.editar(produto).get();
     }
 
     public void deletar(Long id) {
         repository.deletar(id);
     }
 
-    /*public Page<Defeito> listarPaginado(ListagemDto<DefeitoDto> listagemDto) {
-        Defeito defeito = listagemDto.getFiltros().toEntity();
-        return repository.listarPaginado(defeito, listagemDto.getPaginacao().toPageable());
-    }*/
-
     public Produto consultar(Long id) {
         return repository.consultar(id).get();
     }
+
+    public List<ProdutoDTO> listar(){
+        List<Produto> produtosDominio = repository.listar();
+        return ProdutoDTO.from(produtosDominio);
+    }
+
 }

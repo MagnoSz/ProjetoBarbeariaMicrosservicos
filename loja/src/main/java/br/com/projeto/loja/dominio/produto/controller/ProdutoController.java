@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/produto")
@@ -40,12 +42,9 @@ public class ProdutoController {
         service.deletar(id);
     }
 
-    /*@Transactional(readOnly = true)
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<ProdutoDTO> listar(@RequestBody ListagemDto<DefeitoDto> listagemDto) {
-        Page<Defeito> defeitosPage = service.listarPaginado(listagemDto);
-        return ResponseEntity.ok(new Pagina<>(defeitosPage, DefeitoDto::fromEntity));
-    }*/
+    public List<ProdutoDTO> listar() {
+        return service.listar();
+    }
 
 }
