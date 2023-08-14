@@ -1,4 +1,4 @@
-package br.com.projeto.loja.core.config.exceptions;
+package br.com.projeto.agendamento.core.config.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -34,7 +34,7 @@ public class ProdutoDTO {
         if (produto == null) return null;
 
         ProdutoDTO produtoDTO = new ProdutoDTO();
-        produtoDTO.setId(produtoDTO.getId());
+        produtoDTO.setId(produto.getId());
         produtoDTO.setValor(produto.getValor());
         produtoDTO.setDescricao(produto.getDescricao());
         produtoDTO.setQuantidade(produto.getQuantidade());
