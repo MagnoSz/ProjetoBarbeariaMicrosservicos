@@ -38,7 +38,7 @@ public class ProdutoRepositoryImpl implements ProdutoRepository {
 
     @Override
     public void deletar(Long id) {
-        repository.findById(id).ifPresent(data -> repository.delete(data));
+        repository.findById(id).ifPresent(repository::delete);
     }
 
     @Override

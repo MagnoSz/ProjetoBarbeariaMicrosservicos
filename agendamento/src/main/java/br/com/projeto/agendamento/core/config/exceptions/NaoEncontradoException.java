@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Setter
 @AllArgsConstructor
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class NaoEncontradoException {
+public class NaoEncontradoException extends RuntimeException {
 
     private static final long serialVersionUID = -4506442970006191470L;
 

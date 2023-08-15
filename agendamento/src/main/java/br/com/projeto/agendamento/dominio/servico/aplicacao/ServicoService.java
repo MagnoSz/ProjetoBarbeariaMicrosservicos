@@ -16,15 +16,15 @@ public class ServicoService {
     private final ServicoRepository repository;
 
     public Servico inserir(ServicoDTO dto) {
-        Servico produto = dto.toDomain();
-        regras.aplicarRegrasBeforeInsert(produto);
-        return repository.inserir(produto).get();
+        Servico servico = dto.toDomain();
+        regras.aplicarRegrasBeforeInsert(servico);
+        return repository.inserir(servico).get();
     }
 
     public Servico editar(ServicoDTO dto) {
-        Servico produto = dto.toDomain();
-        regras.aplicarRegrasBeforeUpdate(produto);
-        return repository.editar(produto).get();
+        Servico servico = dto.toDomain();
+        regras.aplicarRegrasBeforeUpdate(servico);
+        return repository.editar(servico).get();
     }
 
     public void deletar(Long id) {
@@ -36,8 +36,8 @@ public class ServicoService {
     }
 
     public List<ServicoDTO> listar(){
-        List<Servico> produtosDominio = repository.listar();
-        return ServicoDTO.from(produtosDominio);
+        List<Servico> servicosDominio = repository.listar();
+        return ServicoDTO.from(servicosDominio);
     }
 
 }
