@@ -3,6 +3,7 @@ package br.com.projeto.agendamento.dominio.servico.entidade;
 import br.com.projeto.agendamento.core.config.exceptions.RegraNegocioException;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 @Builder
 @Getter
 @Setter
+@NoArgsConstructor
 public class Servico {
 
     private Long id;

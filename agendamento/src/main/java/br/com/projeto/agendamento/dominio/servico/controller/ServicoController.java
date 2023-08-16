@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/produto")
+@RequestMapping("/servico")
 public class ServicoController {
 
     private final ServicoService service;
