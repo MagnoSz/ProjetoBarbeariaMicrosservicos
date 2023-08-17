@@ -2,8 +2,7 @@ package br.com.projeto.agendamento.dominio._shared;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,7 +10,10 @@ import java.util.Objects;
 
 @Getter
 @Setter
+@Builder
 @MappedSuperclass
+@AllArgsConstructor
+@NoArgsConstructor
 public class EntidadeGenerica implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,6 +1,6 @@
 package br.com.projeto.agendamento.dominio.reserva.entidade;
 
-public enum StatusReservaEnumm {
+public enum StatusReservaEnum {
     RESERVADO,
     FINALIZADO,
     CANCELADO

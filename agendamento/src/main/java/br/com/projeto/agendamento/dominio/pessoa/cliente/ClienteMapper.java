@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class ClienteMapper implements BaseMapper<ClienteData, Cliente> {
+
     @Override
     public Cliente toDomain(ClienteData clienteData) {
         return new Cliente(

@@ -6,9 +6,14 @@ import br.com.projeto.agendamento.dominio.servico.infra.data.ServicoData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class ServicoMapper implements BaseMapper<ServicoData, Servico> {
+
     @Override
     public Servico toDomain(ServicoData servicoData) {
         return new Servico(
@@ -17,6 +22,10 @@ public class ServicoMapper implements BaseMapper<ServicoData, Servico> {
                 servicoData.getDescricao(),
                 servicoData.getTempo()
         );
+    }
+
+    public List<Servico> toDomain(List<ServicoData> servicosData) {
+        return servicosData.stream().map(this::toDomain).collect(Collectors.toList());
     }
 
     @Override
@@ -28,4 +37,9 @@ public class ServicoMapper implements BaseMapper<ServicoData, Servico> {
         servicoData.setTempo(servico.getTempo());
         return servicoData;
     }
+
+    public List<ServicoData> toData(List<Servico> servicosDominio) {
+        return servicosDominio.stream().map(this::toData).collect(Collectors.toList());
+    }
+
 }

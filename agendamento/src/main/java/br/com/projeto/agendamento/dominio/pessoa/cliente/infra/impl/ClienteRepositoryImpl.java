@@ -5,7 +5,6 @@ import br.com.projeto.agendamento.dominio.pessoa.cliente.entidade.Cliente;
 import br.com.projeto.agendamento.dominio.pessoa.cliente.infra.ClienteDataRepository;
 import br.com.projeto.agendamento.dominio.pessoa.cliente.infra.data.ClienteData;
 import br.com.projeto.agendamento.dominio.pessoa.cliente.repository.ClienteRepository;
-import br.com.projeto.agendamento.dominio.pessoa.funcionario.infra.data.FuncionarioData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

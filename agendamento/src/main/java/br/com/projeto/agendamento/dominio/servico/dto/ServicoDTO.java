@@ -26,7 +26,7 @@ public class ServicoDTO {
         return new Servico(id, valor, descricao, tempo);
     }
 
-    public List<Servico> toDomain(List<ServicoDTO> servicosDTO) {
+    public static List<Servico> toDomain(List<ServicoDTO> servicosDTO) {
         return servicosDTO != null ? servicosDTO.stream().map(ServicoDTO::toDomain).collect(Collectors.toList()) : new ArrayList<>();
     }
 

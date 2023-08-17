@@ -8,9 +8,9 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Builder
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 public class Servico {
 
