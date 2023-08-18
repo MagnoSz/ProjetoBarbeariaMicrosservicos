@@ -51,7 +51,7 @@ public class ServicoRepositoryImpl implements ServicoRepository {
     public List<Servico> listar() {
         List<ServicoData> servicosData = repository.findAll();
         List<Servico> servicosDominio = new ArrayList<>();
-        servicosData.forEach(produtoData -> servicosDominio.add(mapper.toDomain(produtoData)));
+        servicosData.forEach(servicoData -> servicosDominio.add(mapper.toDomain(servicoData)));
         return servicosDominio;
     }
 

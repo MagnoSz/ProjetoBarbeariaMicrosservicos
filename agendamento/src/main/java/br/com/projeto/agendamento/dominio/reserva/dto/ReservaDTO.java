@@ -36,7 +36,7 @@ public class ReservaDTO {
         return Util.isDiferenteDeNullEDeVazio(reservasDTO) ? reservasDTO.stream().map(ReservaDTO::toDomain).collect(Collectors.toList()) : new ArrayList<>();
     }
 
-    private static ReservaDTO from(Reserva reserva) {
+    public static ReservaDTO from(Reserva reserva) {
         if (reserva == null) return null;
 
         ReservaDTO reservaDTO = new ReservaDTO();
