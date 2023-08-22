@@ -9,6 +9,9 @@ import br.com.projeto.agendamento.dominio.servico.ServicoMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class ReservaMapper implements BaseMapper<ReservaData, Reserva> {
@@ -29,16 +32,27 @@ public class ReservaMapper implements BaseMapper<ReservaData, Reserva> {
                 .build();
     }
 
+    public List<Reserva> toDomain(List<ReservaData> reservasData) {
+        return reservasData.stream().map(this::toDomain).collect(Collectors.toList());
+    }
+
     @Override
     public ReservaData toData(Reserva reserva) {
         if (reserva == null) return null;
-        return ReservaData.builder()
-                .id(reserva.getId())
-                .cliente(this.clienteMapper.toData(reserva.getCliente()))
-                .funcionario(this.funcionarioMapper.toData(reserva.getFuncionario()))
-                .servicos(this.servicoMapper.toData(reserva.getServicos()))
-                .dataInicial(reserva.getDataInicial())
-                .dataFim(reserva.getDataFim())
-                .build();
+
+        ReservaData reservaData = new ReservaData();
+        reservaData.setId(reserva.getId());
+        reservaData.setCliente(this.clienteMapper.toData(reserva.getCliente()));
+        reservaData.setFuncionario(this.funcionarioMapper.toData(reserva.getFuncionario()));
+        reservaData.setServicos(this.servicoMapper.toData(reserva.getServicos()));
+        reservaData.setDataInicial(reserva.getDataInicial());
+        reservaData.setDataFim(reserva.getDataFim());
+
+        return reservaData;
     }
+
+    public List<ReservaData> toData(List<Reserva> reservasDominio) {
+        return reservasDominio.stream().map(this::toData).collect(Collectors.toList());
+    }
+
 }

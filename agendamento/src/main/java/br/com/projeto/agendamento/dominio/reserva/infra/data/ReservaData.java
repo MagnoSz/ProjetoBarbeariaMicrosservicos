@@ -15,7 +15,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "tb_reserva")

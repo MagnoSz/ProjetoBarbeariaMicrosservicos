@@ -13,8 +13,12 @@ public class Cliente extends Pessoa {
         validar();
     }
 
+    public Cliente(Long id) {
+        super(id);
+    }
+
     private void validar() {
-        if (!CPFUtil.cpfValido(getCpf().replace(".", "").replace("-", ""))) throw new RegraNegocioException("CPF Invávlido!");
+        if (!CPFUtil.cpfValido(getCpf().replace(".", "").replace("-", ""))) throw new RegraNegocioException("CPF Inválido!");
     }
 
 }

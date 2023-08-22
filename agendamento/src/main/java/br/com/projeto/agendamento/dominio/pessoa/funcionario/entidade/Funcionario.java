@@ -25,8 +25,12 @@ public class Funcionario extends Pessoa {
         validar();
     }
 
+    public Funcionario(Long id) {
+        super(id);
+    }
+
     private void validar() {
-        if (!CPFUtil.cpfValido(getCpf().replace(".", "").replace("-", ""))) throw new RegraNegocioException("CPF Invávlido!");
+        if (!CPFUtil.cpfValido(getCpf().replace(".", "").replace("-", ""))) throw new RegraNegocioException("CPF Inválido!");
         if (!Util.isDiferenteDeNullEDeVazio(descricaoFuncionario)) throw new RegraNegocioException("É necessário que o funcionário tenha uma descrição");
     }
 

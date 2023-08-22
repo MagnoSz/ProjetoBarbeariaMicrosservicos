@@ -20,6 +20,10 @@ public class Pessoa {
     private Date dataCadastro;
     private Boolean ativo;
 
+    public Pessoa(Long id) {
+        this.id = id;
+    }
+
     public Pessoa(Long id, String nome, String cpf, String telefone, Date dataCadastro, Boolean ativo) {
         this.id = id;
         this.nome = nome;

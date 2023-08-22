@@ -6,5 +6,8 @@ public class Util {
         return (objeto != null && !objeto.equals(""));
     }
 
+    public static boolean isEmpty(final String value) {
+        return value != null && value.isEmpty();
+    }
 
 }

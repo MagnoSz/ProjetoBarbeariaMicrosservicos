@@ -1,7 +1,6 @@
 package br.com.projeto.agendamento.dominio.reserva.entidade;
 
 import br.com.projeto.agendamento.core.config.exceptions.RegraNegocioException;
-import br.com.projeto.agendamento.dominio._utils.CPFUtil;
 import br.com.projeto.agendamento.dominio._utils.Util;
 import br.com.projeto.agendamento.dominio.pessoa.cliente.entidade.Cliente;
 import br.com.projeto.agendamento.dominio.pessoa.funcionario.entidade.Funcionario;

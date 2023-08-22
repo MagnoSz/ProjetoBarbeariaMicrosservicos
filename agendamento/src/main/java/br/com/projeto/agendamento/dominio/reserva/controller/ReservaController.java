@@ -1,13 +1,21 @@
 package br.com.projeto.agendamento.dominio.reserva.controller;
 
+import br.com.projeto.agendamento.dominio._utils.Util;
+import br.com.projeto.agendamento.dominio.fidelidade.dto.FidelidadeDTO;
+import br.com.projeto.agendamento.dominio.horarios.dto.PesquisaHorariosDTO;
 import br.com.projeto.agendamento.dominio.reserva.aplicacao.ReservaService;
 import br.com.projeto.agendamento.dominio.reserva.dto.ReservaDTO;
 import br.com.projeto.agendamento.dominio.reserva.entidade.Reserva;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 @RestController
@@ -47,6 +55,36 @@ public class ReservaController  {
         return service.listar();
     }
 
+    @GetMapping(value = "/fidelidade/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public ResponseEntity<FidelidadeDTO> obterFidelidadeCliente(@PathVariable Long id) {
+        return ResponseEntity.ok().body(service.obterCountFidelidadeCliente(id));
+    }
 
+    @PostMapping(value = "/consultarHorarios")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response consultarHorarios(@RequestBody PesquisaHorariosDTO pesquisaHorariosDTO) {
+        List<Reserva> reservas = service.obterReservasDoFuncionarioPorData(pesquisaHorariosDTO.getProfissional().getId(), pesquisaHorariosDTO.getData());
+        List<String> horariosReservados = service.getHorariosReservadosDasReservas(reservas);
+        return Response.ok(service.getHorariosFiltrados(horariosReservados, pesquisaHorariosDTO.getServicos(), pesquisaHorariosDTO.getData())).build();
+    }
+
+    @PostMapping(value = "/listarFiltrado")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response listarFiltrado(@RequestBody PesquisaHorariosDTO pesquisaHorarios) {
+        return Response.ok(service.listarFiltrado(pesquisaHorarios.getProfissional().getId(), pesquisaHorarios.getData())).build();
+    }
+
+    @PostMapping(value = "/salvarReserva")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response salvarReserva(@RequestBody ReservaDTO dto) {
+        if (Util.isDiferenteDeNullEDeVazio(dto.getId())) dto.setId(null);
+        service.inserir(dto);
+        return Response.ok().build();
+    }
 
 }
