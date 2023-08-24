@@ -1,6 +1,7 @@
 package br.com.projeto.agendamento.dominio.servico.entidade;
 
 import br.com.projeto.agendamento.core.config.exceptions.RegraNegocioException;
+import br.com.projeto.agendamento.dominio._utils.Util;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,9 +28,13 @@ public class Servico {
         validar();
     }
 
+    public Servico(Long id) {
+        this.id = id;
+    }
+
     private void validar() {
-        if (valor.compareTo(BigDecimal.ZERO) <= 0) throw new RegraNegocioException("Valor não deve ser menor ou igual a zero") ;
-        if (tempo <= 0) throw new RegraNegocioException("Tempo deve ser maior que zero");
+        if (Util.isDiferenteDeNullEDeVazio(valor) && valor.compareTo(BigDecimal.ZERO) <= 0) throw new RegraNegocioException("Valor não deve ser menor ou igual a zero") ;
+        if (Util.isDiferenteDeNullEDeVazio(tempo) && tempo <= 0) throw new RegraNegocioException("Tempo deve ser maior que zero");
     }
 
 }

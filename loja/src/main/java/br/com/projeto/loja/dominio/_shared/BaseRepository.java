@@ -1,10 +1,12 @@
 package br.com.projeto.loja.dominio._shared;
 
+import java.util.List;
 import java.util.Optional;
 
-public interface BaseRepository<DATA> {
-    Optional<DATA> inserir(DATA classe) throws Exception;
-    Optional<DATA> editar(DATA classe) throws Exception;
+public interface BaseRepository<DOMINIO> {
+    Optional<DOMINIO> inserir(DOMINIO dominio);
+    Optional<DOMINIO> editar(DOMINIO dominio);
     void deletar(Long id);
-    Optional<DATA> consultar(Long id) throws Exception;
+    Optional<DOMINIO> consultar(Long id);
+    List<DOMINIO> listar();
 }
