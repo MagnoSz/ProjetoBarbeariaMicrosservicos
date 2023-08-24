@@ -11,6 +11,7 @@ import lombok.Setter;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -28,5 +29,8 @@ public class ReservaData extends EntidadeGenerica {
     @ManyToMany
     @JoinTable(name = "tb_reserva_produtos", joinColumns = {@JoinColumn(name = "id_reserva")}, inverseJoinColumns = {@JoinColumn(name = "id_produto")})
     private List<ProdutoData> produtos;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dataPedido;
 
 }

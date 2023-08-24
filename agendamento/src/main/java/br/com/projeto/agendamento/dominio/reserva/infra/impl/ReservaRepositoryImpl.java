@@ -60,10 +60,10 @@ public class ReservaRepositoryImpl extends BaseRepositoryImpl implements Reserva
 
     @Override
     public List<Reserva> listar() {
-        List<ReservaData> servicosData = repository.findAll();
-        List<Reserva> servicosDominio = new ArrayList<>();
-        servicosData.forEach(produtoData -> servicosDominio.add(mapper.toDomain(produtoData)));
-        return servicosDominio;
+        List<ReservaData> reservasData = repository.findAll();
+        List<Reserva> reservasDominio = new ArrayList<>();
+        reservasData.forEach(reservaData -> reservasDominio.add(mapper.toDomain(reservaData)));
+        return reservasDominio;
     }
 
     @Override

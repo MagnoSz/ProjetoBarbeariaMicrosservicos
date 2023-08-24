@@ -2,6 +2,7 @@ package br.com.projeto.loja.dominio.cliente.entidade;
 
 import br.com.projeto.loja.core.config.exceptions.RegraNegocioException;
 import br.com.projeto.loja.dominio._utils.CPFUtil;
+import br.com.projeto.loja.dominio._utils.Util;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,7 +34,7 @@ public class Cliente {
     }
 
     private void validar() {
-        if (!CPFUtil.cpfValido(getCpf().replace(".", "").replace("-", ""))) throw new RegraNegocioException("CPF Inválido!");
+        if (Util.isDiferenteDeNullEDeVazio(cpf) && !CPFUtil.cpfValido(getCpf().replace(".", "").replace("-", ""))) throw new RegraNegocioException("CPF Inválido!");
     }
 
 }

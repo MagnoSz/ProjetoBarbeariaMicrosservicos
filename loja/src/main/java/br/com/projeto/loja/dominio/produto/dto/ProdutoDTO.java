@@ -26,7 +26,7 @@ public class ProdutoDTO {
         return new Produto(id, valor, descricao, quantidade);
     }
 
-    public List<Produto> toDomain(List<ProdutoDTO> produtosDTO) {
+    public static List<Produto> toDomain(List<ProdutoDTO> produtosDTO) {
         return produtosDTO != null ? produtosDTO.stream().map(ProdutoDTO::toDomain).collect(Collectors.toList()) : new ArrayList<>();
     }
 

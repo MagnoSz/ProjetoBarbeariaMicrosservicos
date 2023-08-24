@@ -1,6 +1,7 @@
 package br.com.projeto.loja.dominio.produto.entidade;
 
 import br.com.projeto.loja.core.config.exceptions.RegraNegocioException;
+import br.com.projeto.loja.dominio._utils.Util;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,8 +27,8 @@ public class Produto {
     }
 
     public void validar() {
-        if (valor.compareTo(BigDecimal.ZERO) <= 0) throw new RegraNegocioException("Valor não deve ser menor ou igual a zero") ;
-        if (quantidade < 0) throw new RegraNegocioException("Quantidade deve ser maior que zero");
+        if (Util.isDiferenteDeNullEDeVazio(valor) && valor.compareTo(BigDecimal.ZERO) <= 0) throw new RegraNegocioException("Valor não deve ser menor ou igual a zero") ;
+        if (Util.isDiferenteDeNullEDeVazio(quantidade) && quantidade < 0) throw new RegraNegocioException("Quantidade deve ser maior que zero");
     }
 
 }

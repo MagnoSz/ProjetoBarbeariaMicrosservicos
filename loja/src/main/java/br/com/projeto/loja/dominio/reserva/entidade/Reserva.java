@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Builder
@@ -17,11 +18,13 @@ public class Reserva {
     private Long id;
     private List<Produto> produtos;
     private Cliente cliente;
+    private Date dataPedido;
 
-    public Reserva(Long id, List<Produto> produtos, Cliente cliente) {
+    public Reserva(Long id, List<Produto> produtos, Cliente cliente, Date dataPedido) {
         this.id = id;
         this.produtos = produtos;
         this.cliente = cliente;
+        this.dataPedido = dataPedido;
         validar();
     }
 
